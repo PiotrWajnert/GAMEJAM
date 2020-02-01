@@ -6,9 +6,13 @@ public class Sword : Actor
 {
     private int baseDmg = 5;
     private int flameDmg = 0;
-    private int bluntDmd = 0;
+    private int bluntDmg = 0;
     private int cutDmg = 0;
 
+    private void Start()
+    {
+        LancaStatsUI.Instance.UpdateLancaUI(baseDmg, flameDmg, bluntDmg, cutDmg);
+    }
     public void Repair(Queue<Item> items)
     {
         List<Item> itemToDestroy = new List<Item>();
@@ -19,12 +23,20 @@ public class Sword : Actor
             {
                 case Item.ItemType.METAL:
                     Debug.Log("Add durability");
-                    health++;
+                    health += 5;
                     break;
 
                 case Item.ItemType.FLAME:
                     Debug.Log("Add flame");
                     flameDmg++;
+                    break;
+                case Item.ItemType.BLUNT:
+                    Debug.Log("Add flame");
+                    bluntDmg++;
+                    break;
+                case Item.ItemType.CUT:
+                    Debug.Log("Add flame");
+                    cutDmg++;
                     break;
             }
             itemToDestroy.Add(i);
@@ -36,7 +48,8 @@ public class Sword : Actor
             Debug.Log("Niiszczymy");
             Destroy(i.gameObject); 
         }
-        
+
+        LancaStatsUI.Instance.UpdateLancaUI(baseDmg, flameDmg, bluntDmg, cutDmg);
     }
 
     public void SpecialAttack(Monster opponent)

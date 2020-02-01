@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Actor : MonoBehaviour
 {
+    public UnityAction<int> onValueHPChange;
     public string name;
     [SerializeField]
     protected int health;
@@ -25,6 +27,7 @@ public abstract class Actor : MonoBehaviour
     public void Damage(int dealDamage)
     {
         health -= dealDamage;
+        UpdateKnightUI();
         //Debug.Log(name + " health: " + health);
     }
 
@@ -41,5 +44,11 @@ public abstract class Actor : MonoBehaviour
     {
         health = startHealth;
         dmg = startDmg;
+    }
+
+    public void UpdateKnightUI()
+    {
+
+        onValueHPChange?.Invoke(health);
     }
 }

@@ -20,7 +20,7 @@ public class ItemUI : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         Item item = this.transform.parent.transform.parent.GetComponent<Item>();
-        if (item.inInventory)
+        if (item.inInventory && UIManager.Instance.IsRepairPanelActive())
         {
             RepairPanel.Instance.AddItem(item);
             item.inInventory = false;
