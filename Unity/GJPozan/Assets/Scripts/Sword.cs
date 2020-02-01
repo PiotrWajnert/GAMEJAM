@@ -5,8 +5,9 @@ using UnityEngine;
 public class Sword : Actor
 {
     private int baseDmg = 5;
-    private int flameDmg = 2;
-    private int otherDmd = 0;
+    private int flameDmg = 0;
+    private int bluntDmd = 0;
+    private int cutDmg = 0;
 
     public void Repair(Queue<Item> items)
     {

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     public string name;
-    public enum ItemType { METAL, FLAME}
+    public enum ItemType { METAL, FLAME, BLUNT, CUT}
     [SerializeField]
     public ItemType itemType;
     [SerializeField]
