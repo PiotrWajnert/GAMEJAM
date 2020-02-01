@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    Queuet<Item> items = new List<Item>();
+    List<Item> items = new List<Item>();
     int itemsOnBoard = 8;
 
     // Start is called before the first frame update

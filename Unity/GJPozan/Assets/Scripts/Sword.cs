@@ -8,23 +8,34 @@ public class Sword : Actor
     private int flameDmg = 2;
     private int otherDmd = 0;
 
-    public void Repair(List<Item> items)
+    public void Repair(Queue<Item> items)
     {
+        List<Item> itemToDestroy = new List<Item>();
         foreach(Item i in items)
         {
+
             switch (i.itemType)
             {
                 case Item.ItemType.METAL:
+                    Debug.Log("Add durability");
                     health++;
                     break;
 
                 case Item.ItemType.FLAME:
+                    Debug.Log("Add flame");
                     flameDmg++;
                     break;
             }
-                
-                    
+            itemToDestroy.Add(i);
+
         }
+        items.Clear();
+       foreach (Item i in itemToDestroy)
+        {
+            Debug.Log("Niiszczymy");
+            Destroy(i.gameObject); 
+        }
+        
     }
 
     public void SpecialAttack(Monster opponent)

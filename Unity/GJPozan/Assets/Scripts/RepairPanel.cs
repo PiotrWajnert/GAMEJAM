@@ -31,7 +31,7 @@ public class RepairPanel : MonoBehaviour
 
     public void JobDone()
     {
-        Game
+        GameManager.Instance.sword.Repair(repairItems);
     }
 
     public void UpdateRepairSlots()

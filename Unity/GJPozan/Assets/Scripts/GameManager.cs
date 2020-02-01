@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator Repairing()
     {
-        sword.Repair(inventory.GetItems());
+        //sword.Repair(inventory.GetItems());
         //isFighting = true;
         //isRapairing = false;
         yield return new WaitForSeconds(5);
