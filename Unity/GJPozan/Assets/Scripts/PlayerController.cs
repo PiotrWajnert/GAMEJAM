@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveSpeed;
     public bool onTheWay = false;
+    public Animator animator;
     public Vector3 startPosition;
     public Vector3 targetPosition;
     public float elapsedTime = 0;
@@ -36,7 +37,9 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
             if (elapsedTime > 1)
             {
+
                 onTheWay = false;
+                animator.SetBool("walk", false);
                 elapsedTime = 0;
             }
         }

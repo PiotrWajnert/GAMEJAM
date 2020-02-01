@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         player.canCollect = false;
         player.elapsedTime = 0;
         player.onTheWay = false;
+        player.animator.SetBool("walk", false);
         sword.UpdateKnightUI();
         yield return new WaitForSeconds(2);
         int next = WaveManager.Instance.GetMonster();

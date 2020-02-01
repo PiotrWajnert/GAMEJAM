@@ -11,6 +11,7 @@ public class MoveArea : MonoBehaviour
         if (player.canCollect)
         {
             player.onTheWay = true;
+            player.animator.SetBool("walk", true);
             player.elapsedTime = 0;
             player.startPosition = new Vector3(player.transform.position.x, player.transform.position.y, -2.75f);
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
