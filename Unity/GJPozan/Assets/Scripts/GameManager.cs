@@ -25,19 +25,22 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        WaveManager.Instance.PrepareQueue();
         StartGame();
     }
 
     IEnumerator PrepareBattlefield()
     {
+        
         player.canCollect = false;
         sword.UpdateKnightUI();
         yield return new WaitForSeconds(2);
-        int randomMonster = Random.Range(0, windmills.Length);
-        GameObject instance = Instantiate(windmills[randomMonster], windmillStartPoint.position, Quaternion.identity);
-        monster = instance.GetComponent<Monster>();
+      
+        GameObject nextMonster = Instantiate(windmills[WaveManager.Instance.GetMonster()], windmillStartPoint.position, Quaternion.identity);
+        monster = nextMonster.GetComponent<Monster>();
         monster.UpdateKnightUI();
         UIManager.Instance.ActiveMonsterHP(monster);
+        NextWindmill.Instance.UpdateNextWindmill();
         if (monster == null) Debug.Log("WTF!!!!!!!!!!!!!!!!!!!!!!!!!!");
         //monster.Reset();
         
