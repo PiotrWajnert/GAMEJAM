@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HpBar : MonoBehaviour
+public class MonsterHpBar : MonoBehaviour
 {
-    [SerializeField]
     private Actor actor;
 
     Slider slider;
-
     private void OnEnable()
     {
-        actor.onValueHPChange += ChangeSliderValue;
+        slider = GetComponent<Slider>();
     }
-
     private void Start()
     {
-        slider = GetComponent<Slider>();
-        slider.maxValue = actor.GetHealth();
+        
+        //slider.maxValue = actor.GetHealth();
     }
 
     private void ChangeSliderValue(int value)
@@ -29,5 +26,8 @@ public class HpBar : MonoBehaviour
     public void SetActor(Actor actorV)
     {
         actor = actorV;
+        slider.maxValue = actor.GetHealth();
+        slider.value = actor.GetHealth();
+        actor.onValueHPChange += ChangeSliderValue;
     }
 }

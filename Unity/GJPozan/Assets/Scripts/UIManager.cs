@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -9,6 +10,8 @@ public class UIManager : MonoBehaviour
     private Canvas rPanel;
     [SerializeField]
     private Timer timer;
+    [SerializeField]
+    private MonsterHpBar monsterBar;
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -35,5 +38,27 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         timer.onTimerEnds -= ActiveRepairPanel;
+    }
+
+    public bool IsRepairPanelActive()
+    {
+        if (rPanel.isActiveAndEnabled)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void ActiveMonsterHP(Actor actor)
+    {
+        monsterBar.gameObject.SetActive(true);
+        monsterBar.SetActor(actor);
+    }
+    public void DeactivateMonsterHP()
+    {
+        monsterBar.gameObject.SetActive(false);
     }
 }

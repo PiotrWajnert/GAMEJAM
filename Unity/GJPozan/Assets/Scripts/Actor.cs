@@ -27,7 +27,7 @@ public abstract class Actor : MonoBehaviour
     public void Damage(int dealDamage)
     {
         health -= dealDamage;
-        onValueHPChange?.Invoke(health);
+        UpdateKnightUI();
         //Debug.Log(name + " health: " + health);
     }
 
@@ -46,5 +46,9 @@ public abstract class Actor : MonoBehaviour
         dmg = startDmg;
     }
 
-    
+    public void UpdateKnightUI()
+    {
+
+        onValueHPChange?.Invoke(health);
+    }
 }

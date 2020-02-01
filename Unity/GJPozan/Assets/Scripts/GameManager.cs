@@ -5,8 +5,11 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public GameObject[] windmills;
     public Sword sword;
-    public Monster monster;
+    private Monster monster;
+    [SerializeField]
+    private Transform windmillStartPoint;
     public Inventory inventory;
 
     void Awake()
@@ -23,8 +26,23 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+    IEnumerator PrepareBattlefield()
+    {
+        sword.UpdateKnightUI();
+        yield return new WaitForSeconds(2);
+        int randomMonster = Random.Range(0, windmills.Length);
+        GameObject instance = Instantiate(windmills[randomMonster], windmillStartPoint.position, Quaternion.identity);
+        monster = instance.GetComponent<Monster>();
+        monster.UpdateKnightUI();
+        UIManager.Instance.ActiveMonsterHP(monster);
+        if (monster == null) Debug.Log("WTF!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //monster.Reset();
+        
+    }
     IEnumerator Battle()
     {
+        yield return new WaitForSeconds(2);
+
         while (sword.GetHealth() > 0 && monster.GetHealth() > 0)
         {
            // Debug.Log("Sword Attack");
@@ -38,7 +56,17 @@ public class GameManager : MonoBehaviour
          }
          Debug.Log("Koniec walki");
          sword.EndMessage();
-         monster.EndMessage();                              
+        if (monster.GetHealth() <= 0)
+        {
+            UIManager.Instance.DeactivateMonsterHP();
+            Destroy(monster.gameObject);
+        }
+
+        
+        if (sword.GetHealth() <= 0)
+        {
+            //gameover
+        }
     }
 
     IEnumerator Picking()
@@ -62,6 +90,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Gameloop()
     {
+        yield return StartCoroutine(PrepareBattlefield());
         yield return StartCoroutine(Battle());
         yield return StartCoroutine(Picking());
         yield return StartCoroutine(Repairing());
@@ -71,7 +100,6 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        monster.Reset();
         StartCoroutine(Gameloop());
     }
 
