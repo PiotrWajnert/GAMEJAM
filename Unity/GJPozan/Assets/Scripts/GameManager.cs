@@ -52,10 +52,19 @@ public class GameManager : MonoBehaviour
         
     }
 
+    IEnumerator Repairing()
+    {
+        while (RepairPanel.Instance.isActiveAndEnabled)
+        {
+            yield return null;
+        }
+        Debug.Log("PONaprawie!");
+    }
     IEnumerator Gameloop()
     {
         yield return StartCoroutine(Battle());
         yield return StartCoroutine(Picking());
+        yield return StartCoroutine(Repairing());
         Debug.Log("koniec gameloopu");
         StartGame();
     }

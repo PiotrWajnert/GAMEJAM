@@ -9,6 +9,10 @@ public class Sword : Actor
     private int bluntDmd = 0;
     private int cutDmg = 0;
 
+    private void Start()
+    {
+        LancaStatsUI.Instance.UpdateLancaUI(baseDmg, flameDmg, bluntDmd, cutDmg);
+    }
     public void Repair(Queue<Item> items)
     {
         List<Item> itemToDestroy = new List<Item>();
@@ -36,7 +40,8 @@ public class Sword : Actor
             Debug.Log("Niiszczymy");
             Destroy(i.gameObject); 
         }
-        
+
+        LancaStatsUI.Instance.UpdateLancaUI(baseDmg, flameDmg, bluntDmd, cutDmg);
     }
 
     public void SpecialAttack(Monster opponent)
