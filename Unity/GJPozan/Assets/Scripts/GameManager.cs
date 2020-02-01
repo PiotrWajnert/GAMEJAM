@@ -35,8 +35,8 @@ public class GameManager : MonoBehaviour
         player.canCollect = false;
         sword.UpdateKnightUI();
         yield return new WaitForSeconds(2);
-      
-        GameObject nextMonster = Instantiate(windmills[WaveManager.Instance.GetMonster()], windmillStartPoint.position, Quaternion.identity);
+        int next = WaveManager.Instance.GetMonster();
+        GameObject nextMonster = Instantiate(windmills[next], windmillStartPoint.position, Quaternion.identity);
         monster = nextMonster.GetComponent<Monster>();
         monster.UpdateKnightUI();
         UIManager.Instance.ActiveMonsterHP(monster);

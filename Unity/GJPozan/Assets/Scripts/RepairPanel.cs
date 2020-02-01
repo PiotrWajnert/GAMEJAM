@@ -40,7 +40,7 @@ public class RepairPanel : MonoBehaviour
         foreach (Item i in repairItems)
         {
             counter++;
-            i.image.rectTransform.position = new Vector2(225 * counter, 720);
+            i.image.rectTransform.position = new Vector2(225 * counter, 1000);
         }
     }
 }

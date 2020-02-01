@@ -60,6 +60,12 @@ public class Sword : Actor
             case (Monster.MonsterType.WOODEN):
                 opponent.Damage(flameDmg);
                 break;
+            case (Monster.MonsterType.IRON):
+                opponent.Damage(cutDmg);
+                break;
+            case (Monster.MonsterType.STONE):
+                opponent.Damage(bluntDmg);
+                break;
         }
             
     }
