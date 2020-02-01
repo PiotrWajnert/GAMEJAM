@@ -2,25 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actor
+public abstract class Actor : MonoBehaviour
 {
-    private int health = 10;
-    private int dmg = 2;
+    public string name;
+    [SerializeField]
+    protected int health;
+    private int startHealth;
+    [SerializeField]
+    protected int dmg;
+    private int startDmg;
 
-
+    void Start()
+    {
+        startHealth = health;
+        startDmg = dmg;
+    }
     public void Attack(Actor opponent)
     {
         opponent.Damage(dmg);
     }
     
-    public void Damage(int dmg)
+    public void Damage(int dealDamage)
     {
-        health -= dmg;
-        Debug.Log("health: " + health);
+        health -= dealDamage;
+        Debug.Log(name + " health: " + health);
     }
 
     public int GetHealth()
     {
         return health;
+    }
+
+    public void EndMessage()
+    {
+        Debug.Log(name + " health: " + health);
+    }
+    public void Reset()
+    {
+        health = startHealth;
+        dmg = startDmg;
     }
 }
