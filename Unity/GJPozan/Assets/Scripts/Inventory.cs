@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    List<Item> items = new List<Item>();
+    Queuet<Item> items = new List<Item>();
     int itemsOnBoard = 8;
 
     // Start is called before the first frame update
     public void AddItem(Item itemToAdd)
     {
         items.Add(itemToAdd);
+        UpdateInventoryUI();
+    }
+
+    public void RemoveItem(Item itemToRemove)
+    {
+        items.Remove(itemToRemove);
         UpdateInventoryUI();
     }
 
@@ -21,13 +27,15 @@ public class Inventory : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        for (int i = 0; i < itemsOnBoard; i++)
+        int counter = 0;
+        foreach(Item i in items)
         {
-            if(items[i] != null)
-            {
-                items[i].transform.position = new Vector2(-3.5f, -1.5f);
-            }
+            counter++;
+            if (counter <5)
+            i.image.rectTransform.position = new Vector2(-50+ 250 * counter, 375);          
+            else
+                i.image.rectTransform.position = new Vector2(-50 + 250 * (counter-4), 100);
         }
-       
+        
     }
 }

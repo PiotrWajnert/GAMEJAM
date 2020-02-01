@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class Item : MonoBehaviour
     private BoxCollider2D boxCollider2d;
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    public Image image;
+
+    public bool inInventory = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,8 @@ public class Item : MonoBehaviour
     {
         spriteRenderer.enabled = false;
         boxCollider2d.enabled = false;
+        image.enabled = true;
+
     }
 
     public void Show()
@@ -35,4 +42,6 @@ public class Item : MonoBehaviour
         spriteRenderer.enabled = true;
         boxCollider2d.enabled = true;
     }
+
+
 }

@@ -32,5 +32,6 @@ public class PlayerController : MonoBehaviour
         Item item = collider.GetComponent<Item>();
         GameManager.Instance.inventory.AddItem(item);
         item.Hide();
+        item.inInventory = true;
     }
 }

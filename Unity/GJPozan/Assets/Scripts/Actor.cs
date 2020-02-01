@@ -25,7 +25,7 @@ public abstract class Actor : MonoBehaviour
     public void Damage(int dealDamage)
     {
         health -= dealDamage;
-        Debug.Log(name + " health: " + health);
+        //Debug.Log(name + " health: " + health);
     }
 
     public int GetHealth()
@@ -35,7 +35,7 @@ public abstract class Actor : MonoBehaviour
 
     public void EndMessage()
     {
-        Debug.Log(name + " health: " + health);
+       // Debug.Log(name + " health: " + health);
     }
     public void Reset()
     {
