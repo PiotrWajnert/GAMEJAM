@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Sword Specjal Attack");
             sword.SpecialAttack(monster);
 
-            //monster.Attack(sword);
+            monster.Attack(sword);
             yield return new WaitForSeconds(1);
          }
          Debug.Log("Koniec walki");
@@ -41,19 +41,21 @@ public class GameManager : MonoBehaviour
          monster.EndMessage();                              
     }
 
-    IEnumerator Repairing()
+    IEnumerator Picking()
     {
-        //sword.Repair(inventory.GetItems());
-        //isFighting = true;
-        //isRapairing = false;
-        yield return new WaitForSeconds(5);
+        UIManager.Instance.ActivateTimer();
+        while (Timer.Instance.isActiveAndEnabled)
+        {
+            yield return null;
+        }
+        Debug.Log("POCZASIE!");
         
     }
 
     IEnumerator Gameloop()
     {
         yield return StartCoroutine(Battle());
-        yield return StartCoroutine(Repairing());
+        yield return StartCoroutine(Picking());
         Debug.Log("koniec gameloopu");
         StartGame();
     }
