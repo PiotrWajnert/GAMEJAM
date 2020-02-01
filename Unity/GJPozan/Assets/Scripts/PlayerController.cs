@@ -6,7 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed;
-
+    public bool onTheWay = false;
+    public Vector3 startPosition;
+    public Vector3 targetPosition;
+    public float elapsedTime = 0;
+    public float moveTime = 1;
     public bool canCollect = false;
     // Start is called before the first frame update
     void Start()
@@ -26,16 +30,18 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        //Store the current horizontal input in the float moveHorizontal.
-        float moveHorizontal = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        if (onTheWay)
+        {
+            elapsedTime += Time.deltaTime / moveTime;
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime);
+            if (elapsedTime > 1)
+            {
+                onTheWay = false;
+                elapsedTime = 0;
+            }
+        }
+           
 
-        //Store the current vertical input in the float moveVertical.
-        float moveVertical = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
-
-        //Use the two store floats to create a new Vector2 variable movement.
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-
-        transform.Translate(movement);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -47,12 +53,7 @@ public class PlayerController : MonoBehaviour
             item.inInventory = true;
         }
     }
-    void OnTriggerEnter2D(Collider2D collider)
-    {
 
-        Item item = collider.GetComponent<Item>();
-        GameManager.Instance.inventory.AddItem(item);
-        item.Hide();
-        item.inInventory = true;
-    }
+
+
 }
