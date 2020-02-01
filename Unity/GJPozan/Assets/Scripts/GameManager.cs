@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public GameObject[] windmills;
+    public GameObject[] scraps;
+    public PlayerController player;
     public Sword sword;
     private Monster monster;
     [SerializeField]
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PrepareBattlefield()
     {
+        player.canCollect = false;
         sword.UpdateKnightUI();
         yield return new WaitForSeconds(2);
         int randomMonster = Random.Range(0, windmills.Length);
@@ -45,13 +48,15 @@ public class GameManager : MonoBehaviour
 
         while (sword.GetHealth() > 0 && monster.GetHealth() > 0)
         {
-           // Debug.Log("Sword Attack");
-
-           // sword.Attack(monster);
-            //Debug.Log("Sword Specjal Attack");
             sword.SpecialAttack(monster);
-
             monster.Attack(sword);
+
+            //scrap
+            int randomScrap = Random.Range(0, scraps.Length);
+            float randomX = Random.Range(-2.25f, 2.25f);
+            float randomY = Random.Range(1.85f, -2f);
+            Vector3 scrapPosition = new Vector3(randomX, randomY, -1);
+            Instantiate(scraps[randomScrap], scrapPosition, Quaternion.identity);
             yield return new WaitForSeconds(1);
          }
          Debug.Log("Koniec walki");
@@ -67,16 +72,21 @@ public class GameManager : MonoBehaviour
         {
             //gameover
         }
+
+        
     }
 
     IEnumerator Picking()
     {
+        player.canCollect = true;
         UIManager.Instance.ActivateTimer();
         while (Timer.Instance.isActiveAndEnabled)
         {
             yield return null;
         }
         Debug.Log("POCZASIE!");
+
+        player.canCollect = false;
         
     }
 
