@@ -90,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 959078428696684947}
   - component: {fileID: 8149690018900285655}
+  - component: {fileID: 7503242801573831234}
   m_Layer: 0
   m_Name: WindmillStone
   m_TagString: Untagged
@@ -128,3 +129,22 @@ MonoBehaviour:
   health: 20
   dmg: 4
   monsterType: 2
+--- !u!95 &7503242801573831234
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781897130438658762}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e579c5c50bf71c24d9762bc6a5509d36, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
