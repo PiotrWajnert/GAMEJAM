@@ -26,4 +26,11 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate(movement);
     }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Item item = collider.GetComponent<Item>();
+        GameManager.Instance.inventory.AddItem(item);
+        item.Hide();
+    }
 }
