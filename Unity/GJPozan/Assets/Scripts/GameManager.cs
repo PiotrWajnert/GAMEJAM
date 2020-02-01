@@ -52,11 +52,17 @@ public class GameManager : MonoBehaviour
             monster.Attack(sword);
 
             //scrap
-            int randomScrap = Random.Range(0, scraps.Length);
-            float randomX = Random.Range(-2.25f, 2.25f);
-            float randomY = Random.Range(1.85f, -2f);
-            Vector3 scrapPosition = new Vector3(randomX, randomY, -1);
-            Instantiate(scraps[randomScrap], scrapPosition, Quaternion.identity);
+            
+            int quantity = Random.Range(1, 3);
+            for(int i = 0; i < quantity; i++)
+            {
+                int randomScrap = Random.Range(0, scraps.Length);
+                float randomX = Random.Range(-2.25f, 2.25f);
+                float randomY = Random.Range(1.85f, -2f);
+                Vector3 scrapPosition = new Vector3(randomX, randomY, -1);
+                Instantiate(scraps[randomScrap], scrapPosition, Quaternion.identity);
+            }
+            
             yield return new WaitForSeconds(1);
          }
          Debug.Log("Koniec walki");
