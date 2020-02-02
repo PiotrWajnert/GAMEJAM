@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Sword : Actor
 {
+    public Sprite[] sprites;
+    public SpriteRenderer spriteRenderer;
     private int baseDmg = 5;
     private int flameDmg = 0;
     private int bluntDmg = 0;
@@ -69,4 +71,21 @@ public class Sword : Actor
         }
             
     }
+
+    private void Update()
+    {
+        if(health > 20)
+        {
+            spriteRenderer.sprite = sprites[0];
+        }
+        else if(health  > 10 && health<= 20)
+        {
+            spriteRenderer.sprite = sprites[1];
+        }
+        else
+        {
+            spriteRenderer.sprite = sprites[2];
+        }
+    }
 }
+

@@ -187,7 +187,7 @@ Transform:
   m_GameObject: {fileID: 5840619068770087625}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.28, y: 3.38, z: -2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.35, y: 1, z: 1}
   m_Children:
   - {fileID: 5840619069083866088}
   - {fileID: 5840619070088778700}
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2defff3c4e799ee46951031314de1c4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  anim: {fileID: 5840619068770087630}
 --- !u!95 &5840619068770087630
 Animator:
   serializedVersion: 3
@@ -277,6 +277,11 @@ MonoBehaviour:
   name: Sword
   health: 30
   dmg: 5
+  sprites:
+  - {fileID: 21300000, guid: 2b6d312ad648f1b49a0f8ea71795df61, type: 3}
+  - {fileID: 21300000, guid: 41624bfda5303f84dae2316a6c0c6d0c, type: 3}
+  - {fileID: 21300000, guid: 40cc4bcaf73f10540a92f06d9e245879, type: 3}
+  spriteRenderer: {fileID: 5840619068486881618}
 --- !u!1 &5840619068928615648
 GameObject:
   m_ObjectHideFlags: 0

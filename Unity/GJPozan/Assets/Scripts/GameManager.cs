@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] windmills;
     public GameObject[] scraps;
     public PlayerController player;
+    public Knight don;
     public Sword sword;
     private Monster monster;
     [SerializeField]
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator PrepareBattlefield()
     {
-        
+ 
         player.canCollect = false;
         player.elapsedTime = 0;
         player.onTheWay = false;
@@ -50,8 +51,9 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Battle()
     {
-        yield return new WaitForSeconds(2);
-
+        don.anim.SetBool("attack", true);
+        yield return new WaitForSeconds(1);
+        
         while (sword.GetHealth() > 0 && monster.GetHealth() > 0)
         {
             sword.SpecialAttack(monster);
@@ -71,7 +73,8 @@ public class GameManager : MonoBehaviour
             
             yield return new WaitForSeconds(1);
          }
-         Debug.Log("Koniec walki");
+        don.anim.SetBool("attack", false);
+        Debug.Log("Koniec walki");
          sword.EndMessage();
         if (monster.GetHealth() <= 0)
         {
