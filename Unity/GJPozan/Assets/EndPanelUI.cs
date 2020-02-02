@@ -23,4 +23,14 @@ public class EndPanelUI : MonoBehaviour
     {
         SceneManager.LoadScene("SampleScene");
     }
+
+    public void BackToStart()
+    {
+        SceneManager.LoadScene("Start");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

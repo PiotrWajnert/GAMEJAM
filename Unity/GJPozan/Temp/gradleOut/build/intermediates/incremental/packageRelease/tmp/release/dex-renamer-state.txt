@@ -1,0 +1,4 @@
+#Sun Feb 02 11:53:09 CET 2020
+base.0=C\:\\GDSProjekty\\GJJPoznan2020\\Unity\\GJPozan\\Temp\\gradleOut\\build\\intermediates\\transforms\\dexMerger\\release\\0
+path.0=classes.dex
+renamed.0=classes.dex
