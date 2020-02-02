@@ -9,9 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private Canvas rPanel;
     [SerializeField]
+    private Canvas endPanel;
+    [SerializeField]
     private Timer timer;
     [SerializeField]
     private MonsterHpBar monsterBar;
+    [SerializeField]
+    private GameObject donHP;
+    [SerializeField]
+    private GameObject lanceStats;
     // Start is called before the first frame update
 
     private void OnEnable()
@@ -60,5 +66,24 @@ public class UIManager : MonoBehaviour
     public void DeactivateMonsterHP()
     {
         monsterBar.gameObject.SetActive(false);
+    }
+
+    public void ActiveEndPanel()
+    {
+        donHP.SetActive(false);
+        lanceStats.SetActive(false);
+        endPanel.gameObject.SetActive(true);
+        
+    }
+    public bool IsEndPanelActive()
+    {
+        if (endPanel.isActiveAndEnabled)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Monster
   health: 25
-  dmg: 2
+  dmg: 5
   monsterType: 1
 --- !u!95 &4563729814386691334
 Animator:

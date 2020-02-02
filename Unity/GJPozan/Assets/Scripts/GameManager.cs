@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform windmillStartPoint;
     public Inventory inventory;
+    private int windmillsDead = 0;
 
     void Awake()
     {
@@ -26,8 +27,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WaveManager.Instance.PrepareQueue();
-        StartGame();
+        if (!UIManager.Instance.IsEndPanelActive())
+        {
+            WaveManager.Instance.PrepareQueue();
+            StartGame();
+        }
+        
     }
 
     IEnumerator PrepareBattlefield()
@@ -51,7 +56,9 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator Battle()
     {
-        don.anim.SetBool("attack", true);
+        if (!UIManager.Instance.IsEndPanelActive())
+        {
+            don.anim.SetBool("attack", true);
         yield return new WaitForSeconds(1);
         
         while (sword.GetHealth() > 0 && monster.GetHealth() > 0)
@@ -74,26 +81,34 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(1);
          }
         don.anim.SetBool("attack", false);
-        Debug.Log("Koniec walki");
-         sword.EndMessage();
+        
         if (monster.GetHealth() <= 0)
         {
+            windmillsDead++;
             UIManager.Instance.DeactivateMonsterHP();
             Destroy(monster.gameObject);
         }
 
         
-        if (sword.GetHealth() <= 0)
-        {
-            //gameover
+            if (sword.GetHealth() <= 0)
+            {
+
+                don.gameObject.SetActive(false);
+                UIManager.Instance.ActiveEndPanel();
+                EndPanelUI.Instance.ChangeText(windmillsDead);
+                yield return new WaitForSeconds(1.5f);
+            }
         }
+        
 
         
     }
 
     IEnumerator Picking()
     {
-        player.canCollect = true;
+        if (!UIManager.Instance.IsEndPanelActive())
+        {
+            player.canCollect = true;
         UIManager.Instance.ActivateTimer();
         while (Timer.Instance.isActiveAndEnabled)
         {
@@ -102,25 +117,35 @@ public class GameManager : MonoBehaviour
         Debug.Log("POCZASIE!");
 
         player.canCollect = false;
+        }
+        
         
     }
 
     IEnumerator Repairing()
     {
-        while (RepairPanel.Instance.isActiveAndEnabled)
+        if (!UIManager.Instance.IsEndPanelActive())
+        {
+            while (RepairPanel.Instance.isActiveAndEnabled)
         {
             yield return null;
         }
         Debug.Log("PONaprawie!");
+        }
+        
     }
     IEnumerator Gameloop()
     {
-        yield return StartCoroutine(PrepareBattlefield());
+        if (!UIManager.Instance.IsEndPanelActive())
+        {
+            yield return StartCoroutine(PrepareBattlefield());
         yield return StartCoroutine(Battle());
         yield return StartCoroutine(Picking());
         yield return StartCoroutine(Repairing());
         Debug.Log("koniec gameloopu");
         StartGame();
+        }
+        
     }
 
     void StartGame()

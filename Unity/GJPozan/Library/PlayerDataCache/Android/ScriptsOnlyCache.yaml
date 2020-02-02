@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - CameraScaler
+    - EndPanelUI
     - GameManager
     - HpBar
     - Inventory
@@ -31,11 +32,14 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
+    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
@@ -133,6 +137,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11534}
     - Class: 114
       Script: {instanceID: 11568}
+    - Class: 114
+      Script: {instanceID: 21882}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -264,7 +270,7 @@ ScriptsOnlyBuild:
     className: GridLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 6d513ccfe67ab1de839c63acfac0c944
+      Hash: c5dd2cf80817444423baa22e4252c114
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -694,6 +700,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 4ce15e99c635d2567873d27549d1f16f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EndPanelUI
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
