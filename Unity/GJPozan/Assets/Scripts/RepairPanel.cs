@@ -32,15 +32,16 @@ public class RepairPanel : MonoBehaviour
     public void JobDone()
     {
         GameManager.Instance.sword.Repair(repairItems);
+
     }
 
     public void UpdateRepairSlots()
     {
-        int counter = 0;
-        foreach (Item i in repairItems)
-        {
-            counter++;
-            i.image.rectTransform.position = new Vector2(225 * counter, 1000);
-        }
+        RepairSlotManager.Instance.UpdateRepairSlots(repairItems);
+    }
+    private void OnDisable()
+    {
+        repairItems.Clear();
+        RepairSlotManager.Instance.ClearSlots();
     }
 }

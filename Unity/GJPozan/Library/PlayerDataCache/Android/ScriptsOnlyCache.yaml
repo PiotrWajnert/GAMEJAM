@@ -1,9 +1,11 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - CameraScaler
     - GameManager
     - HpBar
     - Inventory
+    - InventorySlotsManager
     - Item
     - ItemUI
     - Knight
@@ -14,6 +16,8 @@ ScriptsOnlyBuild:
     - NextWindmill
     - PlayerController
     - RepairPanel
+    - RepairSlotManager
+    - Slot
     - Sword
     - Timer
     - UIManager
@@ -27,8 +31,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -54,13 +60,21 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 28
       Script: {instanceID: 0}
+    - Class: 43
+      Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
     - Class: 50
       Script: {instanceID: 0}
     - Class: 61
       Script: {instanceID: 0}
+    - Class: 74
+      Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -71,54 +85,66 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9738}
     - Class: 114
-      Script: {instanceID: 9840}
+      Script: {instanceID: 9824}
     - Class: 114
-      Script: {instanceID: 9880}
+      Script: {instanceID: 9842}
     - Class: 114
-      Script: {instanceID: 9934}
+      Script: {instanceID: 9882}
     - Class: 114
-      Script: {instanceID: 9990}
+      Script: {instanceID: 9936}
     - Class: 114
-      Script: {instanceID: 10004}
+      Script: {instanceID: 9992}
     - Class: 114
-      Script: {instanceID: 10042}
+      Script: {instanceID: 10006}
     - Class: 114
-      Script: {instanceID: 10288}
+      Script: {instanceID: 10044}
     - Class: 114
-      Script: {instanceID: 10426}
+      Script: {instanceID: 10290}
     - Class: 114
-      Script: {instanceID: 10446}
+      Script: {instanceID: 10428}
     - Class: 114
-      Script: {instanceID: 10512}
+      Script: {instanceID: 10448}
     - Class: 114
-      Script: {instanceID: 10666}
+      Script: {instanceID: 10514}
     - Class: 114
-      Script: {instanceID: 10692}
+      Script: {instanceID: 10668}
     - Class: 114
-      Script: {instanceID: 10848}
+      Script: {instanceID: 10694}
     - Class: 114
-      Script: {instanceID: 11016}
+      Script: {instanceID: 10850}
     - Class: 114
-      Script: {instanceID: 11142}
+      Script: {instanceID: 10918}
     - Class: 114
-      Script: {instanceID: 11148}
+      Script: {instanceID: 11020}
     - Class: 114
-      Script: {instanceID: 11308}
+      Script: {instanceID: 11146}
     - Class: 114
-      Script: {instanceID: 11364}
+      Script: {instanceID: 11152}
     - Class: 114
-      Script: {instanceID: 11432}
+      Script: {instanceID: 11312}
     - Class: 114
-      Script: {instanceID: 11524}
+      Script: {instanceID: 11368}
     - Class: 114
-      Script: {instanceID: 11558}
+      Script: {instanceID: 11436}
     - Class: 114
-      Script: {instanceID: 19616}
+      Script: {instanceID: 11528}
+    - Class: 114
+      Script: {instanceID: 11562}
+    - Class: 114
+      Script: {instanceID: 13568}
+    - Class: 114
+      Script: {instanceID: 23626}
+    - Class: 114
+      Script: {instanceID: 29526}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -185,6 +211,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
+  - hash:
+      serializedVersion: 2
+      Hash: 00d9f714270df1d7e9b628227136d26d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: CameraScaler
   - hash:
       serializedVersion: 2
       Hash: 72712369a7c681ad84fc255a5ec0b333
@@ -481,6 +513,12 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 27ebaa633e4f4014a4763e0bff2ae3e8
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MoveArea
+  - hash:
+      serializedVersion: 2
       Hash: c1933cc0a2f4ff6eb13333347497beb3
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -559,7 +597,7 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
-      Hash: b53d3fd5a21b294a31c1df8d3798dd1d
+      Hash: 785425f6292beeadbff32bcd1a8380bc
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerController
@@ -643,16 +681,22 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
-      Hash: 00d9f714270df1d7e9b628227136d26d
+      Hash: 7f059aa9ef69681ea5f4e1aa7d3a8294
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: CameraScaler
+    className: InventorySlotsManager
   - hash:
       serializedVersion: 2
-      Hash: 27ebaa633e4f4014a4763e0bff2ae3e8
+      Hash: 5313d99a5130dd2740e582177f694ed9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: MoveArea
+    className: Slot
+  - hash:
+      serializedVersion: 2
+      Hash: 7f059aa9ef69681ea5f4e1aa7d3a8294
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RepairSlotManager
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity

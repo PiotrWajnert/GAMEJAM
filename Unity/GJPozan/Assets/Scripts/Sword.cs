@@ -21,20 +21,20 @@ public class Sword : Actor
 
             switch (i.itemType)
             {
-                case Item.ItemType.METAL:
+                case global::Item.ItemType.METAL:
                     Debug.Log("Add durability");
                     health += 5;
                     break;
 
-                case Item.ItemType.FLAME:
+                case global::Item.ItemType.FLAME:
                     Debug.Log("Add flame");
                     flameDmg++;
                     break;
-                case Item.ItemType.BLUNT:
+                case global::Item.ItemType.BLUNT:
                     Debug.Log("Add flame");
                     bluntDmg++;
                     break;
-                case Item.ItemType.CUT:
+                case global::Item.ItemType.CUT:
                     Debug.Log("Add flame");
                     cutDmg++;
                     break;

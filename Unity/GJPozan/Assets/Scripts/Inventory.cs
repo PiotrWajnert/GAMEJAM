@@ -34,14 +34,15 @@ public class Inventory : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    public List<Item> GetItems()
+    public Queue<Item> GetItems()
     {
-        return items;
+        return itemsQueue;
     }
 
     public void UpdateInventoryUI()
     {
-        int counter = 0;
+        InventorySlotsManager.Instance.UpdateInventorySlot(itemsQueue);
+        /*int counter = 0;
         foreach(Item i in itemsQueue)
         {
             counter++;
@@ -49,7 +50,7 @@ public class Inventory : MonoBehaviour
             i.image.rectTransform.position = new Vector2(-50+ 250 * counter, 375);          
             else
                 i.image.rectTransform.position = new Vector2(-50 + 250 * (counter-4), 100);
-        }
+        }*/
         
     }
 }

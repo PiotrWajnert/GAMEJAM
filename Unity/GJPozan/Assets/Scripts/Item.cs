@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
     {
         spriteRenderer.enabled = false;
         boxCollider2d.enabled = false;
-        image.enabled = true;
+       
 
     }
 
@@ -43,5 +43,8 @@ public class Item : MonoBehaviour
         boxCollider2d.enabled = true;
     }
 
-
+    public int GetItemType()
+    {
+        return (int)itemType;
+    }
 }
